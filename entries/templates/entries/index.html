@@ -12,9 +12,7 @@
                         <div class="row text-center">
                             <div class="col-12 ">
                                 <div class="threads">
-                                    <h2>
-                                        {{ list.date_created|date:'l d M Y'}}
-                                    </h2>
+                                    <h2> {{ list.date_created|date:'l d M Y'}}</h2>
                                     <h3>
                                         <a href="{% url 'detail_view' list.id %}">
                                             {{ list.title }}
@@ -31,6 +29,38 @@
                 </div>
             {% endfor %}
         </div>
+
+
+        <!--modal to allow user add event -->
+        <div class="col-sm-12 pt-4 mx-auto">
+            <a class="text-center add-event btn" data-toggle="modal" data-target="#modaladdevent{{ entry.id }}">
+                <span class="text-capitalize color-pink"> Add Event </span>
+            </a> 
+
+            <div class="modal fade" id="modaladdevent{{ entry.id }}" tabindex="-1" aria-labelledby="modaladdLabel{{ entry.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="text-black mt-2">
+                            <h5 class="modal-title pt-2 text-center" id="modaladdLabel{{ entry.id }}">
+                                ADD EVENT
+                            </h5>
+                            <button type="button" class="btn-close cancel-btn" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>           
+                            </button>  
+                        </div>
+                        <div class="modal-body text-center text-black">
+                            <form class="form mb-2 text-black" action="{% url 'home' %}" method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button class="btn btn-black rounded-0 text-uppercase mb-4 mt-4">SUBMIT</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>    
+        </div>
+
+
     </section>
 
 {% endblock %}

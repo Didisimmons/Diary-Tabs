@@ -106,3 +106,7 @@ input[type="submit"] {
 .return a:hover{
     text-decoration: underline;
 }
+
+.more-button{
+    border: 1px solid grey;
+}

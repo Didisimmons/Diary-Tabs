@@ -12,3 +12,4 @@ class Entry(models.Model):
 
     class Meta:
         verbose_name_plural = 'Entries'
+        ordering = ['-date_created']
