@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section>
+    <div class="diary-header">
+        <h1>Dear Diary : List of Activities</h1>
+    </div>
+    <section>
+        <div class="container diary-container">
+            {% for list in displayList %}
+                        <div class="row text-center">
+                            <div class="col-12 ">
+                                <div class="threads">
+                                    <h2>
+                                        {{ list.date_created|date:'l d M Y'}}
+                                    </h2>
+                                    <h3>
+                                        <a href="{% url 'detail_view' list.id %}">
+                                            {{ list.title }}
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+            {% empty %}
+                <div class="mt-3 mb-4">
+                    <div class="card-body text-center">
+                        <p class="text-center pt-2 text-capitalize general-color">No Entry In Diary</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}
