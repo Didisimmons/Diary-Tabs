@@ -1,0 +1,29 @@
+<div class="view-more-button">
+    <a class="more-button btn" data-toggle="modal" data-target="#modaleditevent{{ entry.id }}">EDIT</a>
+</div>
+
+<!-- Modal to allow users to edit their review -->
+<div class="modal fade"  id="modaleditevent{{ entry.id }}" tabindex="-1" aria-labelledby="modaleventedit{{ entry.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="text-black mt-2">
+                <div class="cancel">
+                    <button type="button" class="btn-close cancel-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>           
+                    </button> 
+                </div> 
+                <h5 class="modal-title pt-2 text-center">
+                    EDIT EVENT 
+                </h5>
+                <p class="text-black text-center">( Edit previous event )</p>
+            </div>
+            <div class="modal-body text-center text-black">
+                <form class="text-black" action="{% url 'edit_events' entry.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-black rounded-0 text-uppercase mb-4 mt-4">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

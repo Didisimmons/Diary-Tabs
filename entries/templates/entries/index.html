@@ -31,22 +31,27 @@
         </div>
 
 
-        <!--modal to allow user add event -->
+        
         <div class="col-sm-12 pt-4 mx-auto">
-            <a class="text-center add-event btn" data-toggle="modal" data-target="#modaladdevent{{ entry.id }}">
-                <span class="text-capitalize color-pink"> Add Event </span>
-            </a> 
-
+            <div class="text-center">
+                <a class="text-center add-event btn" data-toggle="modal" data-target="#modaladdevent{{ entry.id }}">
+                    <span class="text-capitalize color-pink"> Add Event </span>
+                </a> 
+            </div>
+            
+            <!--modal to allow user add event -->
             <div class="modal fade" id="modaladdevent{{ entry.id }}" tabindex="-1" aria-labelledby="modaladdLabel{{ entry.id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="text-black mt-2">
+                            <div class="cancel">
+                                <button type="button" class="btn-close cancel-btn" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>           
+                                </button> 
+                            </div> 
                             <h5 class="modal-title pt-2 text-center" id="modaladdLabel{{ entry.id }}">
                                 ADD EVENT
-                            </h5>
-                            <button type="button" class="btn-close cancel-btn" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>           
-                            </button>  
+                            </h5> 
                         </div>
                         <div class="modal-body text-center text-black">
                             <form class="form mb-2 text-black" action="{% url 'home' %}" method="POST">
@@ -57,10 +62,8 @@
                         </div>
                     </div>
                 </div>
-                </div>    
+            </div>    
         </div>
-
-
     </section>
 
 {% endblock %}

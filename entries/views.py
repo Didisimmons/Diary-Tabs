@@ -27,9 +27,35 @@ def entryList(request):
 
 def entryDetailView(request, entry_id):
     displayView = get_object_or_404(Entry, pk=entry_id)
+    entry = Entry.objects.get(id=entry_id)
+
+    template = 'entries/detail_view.html'
+    
+    form = EntryForm()
+    displayView.save()
+
+    context = {
+        'entry' : entry,
+        'form': form,
+        'displayView': displayView,
+       
+    }
+    return render(request, template, context)
+
+def editDetailView(request, entry_id ):
+    editView = get_object_or_404(Entry, pk=entry_id)
+
+    if request.method == "POST":
+        form = EntryForm(request.POST, instance=editView)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('detail_view', args=[editView.id]))
+    else:
+        form = EntryForm(instance=editView)
+
     template = 'entries/detail_view.html'
     context = {
-        'displayView':  displayView,
-       
+        'editView': editView,
+        'form' : form, 
     }
     return render(request, template, context)
